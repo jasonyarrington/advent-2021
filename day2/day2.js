@@ -20,6 +20,8 @@ fs.readFile(path, 'utf8', (err, data) => {
         }
     })
 
+
+    // Part 1
     let horizontal = 0;
     let depth = 0;
 
@@ -41,6 +43,28 @@ fs.readFile(path, 'utf8', (err, data) => {
         }
 
         console.log(horizontal, depth);
+    })
+
+    // Part 2
+
+    let aim = 0;
+    horizontal = 0;
+    depth = 0;
+
+    data.forEach((record, index) => {
+        console.log(record)
+        switch(record.direction) {
+            case 'forward':
+                horizontal = horizontal + record.value;
+                depth = depth + (aim * record.value);
+            break;
+            case 'down':
+                aim = aim + record.value;
+            break;
+            case 'up':
+                aim = aim - record.value;
+            break;
+        }
     })
 
     console.log(horizontal, depth, horizontal * depth);
